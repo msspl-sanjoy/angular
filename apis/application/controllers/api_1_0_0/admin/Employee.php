@@ -239,7 +239,7 @@ if (!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobal
          if(!empty($emp_id)){
 
          $http_response = 'http_response_ok';
-         $success_message = 'Add Employee successfully';
+         $success_message = 'Add User successfully';
 
          }else{
          $http_response  = 'http_response_bad_request';
@@ -359,7 +359,7 @@ if(!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobals
             ));
 
            $http_response      = 'http_response_ok';
-           $success_message    = 'Updated employee successfully';
+           $success_message    = 'Updated user successfully';
    
 
     }else{
@@ -434,7 +434,7 @@ function deleteEmployee_post(){
            $result_arr['count']   = $count['count_employee'];
            $result_arr = array();
            $http_response = 'http_response_ok';
-           $success_message = 'Employee delete successfully';
+           $success_message = 'User delete successfully';
            
       }else{
         $http_response = 'http_response_bad_request';

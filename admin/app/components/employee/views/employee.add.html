@@ -12,7 +12,7 @@
     </div>-->
 
     <div class="container-fluid white_rbg_clr">
-    <h2 class="main_page_heading">Add New Employee</h2>
+    <h2 class="main_page_heading">Add New User</h2>
     </div>
 
     <div class="main_right_cont_bg">
@@ -28,7 +28,7 @@
 
 <div id="login-alert" class="alert alert-success col-sm-12"style="text-align:center; margin-top: 5px;" ng-if="successMessage">{{successMessage}} </div>
       <div class="back_to_item_list clearafter">
-      <h3 class="frm_heding_txt">Add New Employee</h3><a href="#/dashboard/employee/list" class="back_text"><i class="fa fa-angle-left" aria-hidden="true"></i>Back to  employee list</a>
+      <h3 class="frm_heding_txt">Add New User</h3><a href="#/dashboard/employee/list" class="back_text"><i class="fa fa-angle-left" aria-hidden="true"></i>Back to  user list</a>
       </div>
       </div>
     </div>
@@ -36,15 +36,15 @@
         <form action="" class="creat_evnt_frm_fld" name="addemployee" role="form" 
         novalidate="" ng-submit="doaddemployee(employeeData)">
         <div class="row">
-          <div class="col-md-12"><div class="form-group"><input type="text" class="form-control" ng-model="employeeData.name" placeholder="Employee name"></div></div>
+          <div class="col-md-12"><div class="form-group"><input type="text" class="form-control" ng-model="employeeData.name" placeholder="User name"></div></div>
 
-          <div class="col-md-12"><div class="form-group"><input type="text" class="form-control" ng-model ="employeeData.mobile" placeholder="Employee mobile"></div></div>
+          <div class="col-md-12"><div class="form-group"><input type="text" class="form-control" ng-model ="employeeData.mobile" placeholder="User mobile"></div></div>
          
-         <div class="col-md-12"><div class="form-group"><input type="text" class="form-control" ng-model="employeeData.email" placeholder="Employee email"></div></div>
+         <div class="col-md-12"><div class="form-group"><input type="text" class="form-control" ng-model="employeeData.email" placeholder="User email"></div></div>
          
          
 
-          <div class="col-md-12"><div class="form-group"><textarea class="form-control" placeholder="Employee Address" ng-model="employeeData.address" rows="4"></textarea></div>
+          <div class="col-md-12"><div class="form-group"><textarea class="form-control" placeholder="User Address" ng-model="employeeData.address" rows="4"></textarea></div>
           </div>
 
           <!--<div class="col-md-12"><div class="form-group"><textarea class="form-control" placeholder="Employee Details" ng-model="employeeData.detail" rows="4"></textarea></div>
@@ -80,7 +80,7 @@
             </select></div></div>-->
 
             <div class="col-md-12"><div class="btn_cnterposi">
-            <input type="submit" class="btn btn-default crtenewevent_sbmit_btn" value="create new events">
+            <input type="submit" class="btn btn-default crtenewevent_sbmit_btn" value="create new user">
             </div>
 
             </div>

@@ -75,6 +75,7 @@ angular
 		    	{ 
 			        if (tmpStr === $scope.searchByName) 
 			        {
+						
 						$scope.getAllEmployee($scope.pageno, $scope.order_by, $scope.order, $scope.searchByName);
 			        }
 			    }, 1000);	
@@ -115,7 +116,7 @@ angular
 		$scope.deleteEmployee = function(employeeeId,index)
 		{
 			
-		    alert(employeeeId);
+		    //alert(employeeeId);
 		    $scope.employeeIndex = index;
 			var employeeParam = {
 				'employeeID' 	: employeeeId,
@@ -128,12 +129,13 @@ angular
 		$scope.deleteEmployeeSuccess = function(result, status)
 		{
 			if(status == 200)
-			{
+			{   
+				$scope.getAllEmployee($scope.pageno, $scope.order_by, $scope.order, $scope.searchByName);
 				//alert($scope.employeeIndex);
 				$scope.successMessage = result.raws.success_message;
 				$scope.clearMessage();
 				$scope.getAllEmployee.splice($scope.employeeIndex,1);
-				window.location.reload();
+				//window.location.reload();
 				
 			}
 		}

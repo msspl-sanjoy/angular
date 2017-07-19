@@ -45,7 +45,7 @@ angular
         }
         getTimeStamp();
 
-        $confirmModalDefaults.defaultLabels.title = 'angular obr';
+        $confirmModalDefaults.defaultLabels.title = 'angular practice';
     })
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
     // any unknown URLS go to 404
@@ -154,7 +154,7 @@ angular
   controller:'employeeController',
   onEnter: function($state,$rootScope){ // define value and load the default variable in our page
               $rootScope.parentBreadcrumb = 'Dashboard';
-              $rootScope.breadcrumb       = 'Employee list';
+              $rootScope.breadcrumb       = 'User list';
               $rootScope.carousel         = '';
               //$rootScope.leftMenu         = 'list'; 
             }
@@ -171,8 +171,8 @@ angular
   controller: 'employeeController',
   onEnter: function($state,$rootScope){ // define value and load the default variable in our page
     $rootScope.parentBreadcrumb = 'Dashboard';
-    $rootScope.breadcrumb       = 'Employee';
-    $rootScope.carousel         = 'Add employee';
+    $rootScope.breadcrumb       = 'User';
+    $rootScope.carousel         = 'Add user';
     //$rootScope.leftMenu         = 'add'; 
   }
  })
@@ -183,8 +183,8 @@ angular
   controller: 'editEmployeeController',
   onEnter: function($state,$rootScope){ // define value and load the default variable in our page
     $rootScope.parentBreadcrumb = 'Dashboard';
-    $rootScope.breadcrumb       = 'Employee';
-    $rootScope.carousel         = 'Update Employee';
+    $rootScope.breadcrumb       = 'user';
+    $rootScope.carousel         = 'Update user';
     
     //$rootScope.leftMenu         = 'edit'; 
             }
