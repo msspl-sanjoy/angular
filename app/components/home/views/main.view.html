@@ -1,0 +1,33 @@
+<center>
+    <form class="registrationFormMain" name ="regForm" role="form" ng-submit="doRegitration(regData)" novalidate>
+    <div>{{errorMessage}}</div>
+      <table>
+        <tr>
+          <td colspan="2"><h1>Registration</h1></td>
+          </tr>
+        <tr>
+          <td>Name:-</td>
+          <td><input type="text" name="u_name" id="u_name" ng-model="regData.u_name"></td>
+        </tr>
+        <tr>
+          <td>Address:-</td>
+          <td><input type="text" name="u_add" id="u_add" ng-model="regData.u_add"></td>
+        </tr>
+        <tr>
+          <td>Email:-</td>
+          <td><input type="email" name="u_email" id="u_email" ng-model="regData.u_email"></td>
+        </tr>
+        <tr>
+          <td>Password:-</td>
+          <td><input type="password" name="u_pass" id="u_pass" ng-model="regData.u_pass"></td>
+        </tr>
+        <tr>
+          <td>Mobile:-</td>
+          <td><input type="text" name="u_mob" id="u_mob" ng-model="regData.u_mob"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" name="u_submit" id="u_submit" value="Register"></td>
+        </tr>
+      </table>
+    </form>
+  </center>

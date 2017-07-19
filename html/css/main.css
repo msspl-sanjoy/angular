@@ -1,0 +1,34 @@
+table tr td
+{
+	border-collapse: collapse;
+	border:#ccc 1px solid;
+	text-align: center;
+}
+ul {
+  list-style-type: none;
+}
+a{
+	text-decoration: none;
+}
+#header
+{
+	width: 1500px;
+	height: 150px;
+	background-color: #c17777;
+	text-align: center;
+	padding-top: 20px solid;
+}
+#left_panel
+{
+	width: 200px;
+	height: 700px;
+	background-color: #8ac177;
+	text-align: center;
+	float: left;
+}
+#dashboard
+{
+	float: left;
+	
+}
+
