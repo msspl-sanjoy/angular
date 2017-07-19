@@ -380,6 +380,11 @@ public function verifyPhone_post($data = array()){
 
 
 }
+function token_post() {
+         // Handle a request for an OAuth2.0 Access Token and send the response to the client
+        $this->oauth_server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();
+    }
+
 
 /****************************end of User controlller**********************/
 

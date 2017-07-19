@@ -33,9 +33,7 @@ function getAllEmployee($param = array()){
         if(!empty($param['searchByName']))
         {
         $this->db->like('name',$param['searchByName']);
-        $this->db->or_like('phone',$param['searchByName']);
-        $this->db->or_like('email',$param['searchByName']);
-        $this->db->or_like('designation',$param['searchByName']);
+        
         }
 
         if(!empty($param['page']) && !empty($param['page_size']))
@@ -46,7 +44,7 @@ function getAllEmployee($param = array()){
             $offset = $limit*($param['page']-1);
             $this->db->limit($limit, $offset);
         }
-        $result = $this->db->get($this->tables['tbl_employee'])->result_array();
+        $result = $this->db->get($this->tables['tbl_user'])->result_array();
         //echo $this->db->last_query();
         return $result;
 
@@ -106,7 +104,7 @@ public function getAllEmployeeCount($param = array())
   $this->db->where('id',$param['employeeID']);
   }
 
-  $emp_dtail = $this->db->get($this->tables['tbl_employee'])->row_array();
+  $emp_dtail = $this->db->get($this->tables['tbl_user'])->row_array();
   return $emp_dtail;
 
  }
@@ -115,7 +113,7 @@ public function getAllEmployeeCount($param = array())
 function updateEmployee($where=array(),$param=array()){
  
  $this->db->where('id',$where['id']);
- $this->db->update($this->tables['tbl_employee'],$param);
+ $this->db->update($this->tables['tbl_user'],$param);
 
 }
 

@@ -34,9 +34,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Designation</th>
-                    <th>State</th>
-                    <th>Date</th>
+                    <th>Address</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -45,11 +43,9 @@
                     <td><a href="" class="event_name_class">{{lists.name}}</a></td>
                     
                     <td>{{lists.email}}</td>
-                    <td>{{lists.phone}}</td>
-                    <td>{{lists.designation}}</td>
-                    <td>{{lists.state}}</td>
-                    <td>{{lists.date_of_joing}}</td>
-                    <td><a confirm="Are you sure you want to delete this Emoployee ?" ng-click ="deleteEmployee(lists.id,$index);" href="javascript:void(0);" class="eye_img_tbl"><img src="assets/img/tbl_mobile_icon.png" alt="Delete" title="Delete"></a>
+                    <td>{{lists.mobile}}</td>
+                    <td>{{lists.address}}</td>
+                    <td><a confirm="Are you sure you want to delete this uer?" ng-click ="deleteEmployee(lists.id,$index);" href="javascript:void(0);" class="eye_img_tbl"><img src="assets/img/tbl_mobile_icon.png" alt="Delete" title="Delete"></a>
                     <a href="#/dashboard/employee/update-employee/{{lists.id}}" class="eye_img_tbl"><img src="assets/img/edit_pencil.png" alt="Update" title="Update"></a>
                     </td>
                   </tr>

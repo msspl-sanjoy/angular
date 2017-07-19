@@ -1,5 +1,5 @@
 angular
- .module('pAngular')
+ .module('mPokket')
  .controller('userController', ["$scope", "$rootScope", '$stateParams', '$timeout', "$uibModal", 'helper', 'CONFIG', 'ajaxService', '$location', '$cookies', "blockUI",'$state', '$window', function($scope, $rootScope, $stateParams, $timeout, $uibModal, helper, CONFIG, ajaxService, $location, $cookies, blockUI, $state, $window){
  //$scope.doUpdateProfile = {};
  $scope.getAlluser = function(pageno,order_by,order){

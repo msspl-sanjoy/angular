@@ -356,36 +356,13 @@ if(!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobals
         $req_arr['email'] = $this->post('email',true);
 
     }
-    if(empty($this->post('phone',true))){
+    if(empty($this->post('mobile',true))){
         $flag = false;
         $error_message = "Employee Phone is required";
    }else{
-    $req_arr['phone'] = $this->post('phone',true);
+    $req_arr['phone'] = $this->post('mobile',true);
    }
-   if(empty($this->post('designation',true))){
-    $flag = false;
-    $error_message = "Employee designation is required";
-
-   }else{
-     $req_arr['designation']= $this->post('designation',true);
-
-   }
-
-   if(empty($this->post('company',true))){
-    $flag = false;
-    $error_message = "Employee company name is required";
-
-   }else{
-     $req_arr['company']= $this->post('company',true);
-   }
-
-   if(empty($this->post('state',true))){
-    $flag = false;
-    $error_message = "Employee state is required";
-
-   }else{
-    $req_arr['state']= $this->post('state',true);
-   }
+   
 
       
     $req_arr['address']= $this->post('address',true);
@@ -400,10 +377,7 @@ if(!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobals
             array(
             'name' => $req_arr['name'],
             'email'=> $req_arr['email'],
-            'phone'=> $req_arr['phone'],
-            'designation'=> $req_arr['designation'],
-            'company'=> $req_arr['company'],
-            'state' => $req_arr['state'],
+            'mobile'=> $req_arr['phone'],
             'address'=> $req_arr['address'] ,
             ));
 

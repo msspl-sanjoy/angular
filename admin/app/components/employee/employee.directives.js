@@ -1,4 +1,4 @@
-angular.module('pAngular')
+angular.module('mPokket')
 .directive('employeeRightSection',function(){
      return {
     

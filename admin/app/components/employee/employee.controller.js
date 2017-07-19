@@ -1,5 +1,5 @@
 angular
-	.module('pAngular')
+	.module('mPokket')
 	.controller('employeeController', ["$scope", 'ajaxService', 'CONFIG', '$location', '$timeout', '$cookies', '$state', "helper", "$rootScope",'$window', function($scope, ajaxService, CONFIG, $location, $timeout, $cookies, $state, helper, $rootScope,$window)
 	{
 		//alert($state.$current.name);

@@ -1,5 +1,5 @@
 angular
-	.module('pAngular')
+	.module('mPokket')
 	.directive('ckEditor', function () {
         return {
                 require: '?ngModel',

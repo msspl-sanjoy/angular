@@ -1,5 +1,5 @@
 angular
-	.module('pAngular')
+	.module('mPokket')
 	.controller('homeController', ["$scope", "$http", "$window", "$q", 'ajaxService', 'CONFIG', '$location', '$timeout', '$cookies', 'helper', function($scope, $http, $window, $q, ajaxService, CONFIG, $location, $timeout, $cookies, helper){
      //alert(CONFIG.ApiUrl);
     	//$scope.admin_user_id 	= 0;
@@ -8,13 +8,14 @@ angular
 		// Perform the login action when the user submits the login form
 		$scope.doLogin = function(loginData) { 
 			//alert(CONFIG.ApiUrl);
-			//console.log(loginData);  
+			//alert(loginData) ; 
 			ajaxService.ApiCall(loginData, CONFIG.ApiUrl+'admin/logIn', $scope.loginUserSuccess, $scope.loginUserError, 'post');
 		}
 
 
 		//login success function
 		$scope.loginUserSuccess = function(result,status) {
+			//alert(result+status);
 		    if(status == 200) {
 		    	// Setting a cookie
 		    	$cookies.put('admin_user_id', result.raws.data.admin_user_id,{'path': '/'});

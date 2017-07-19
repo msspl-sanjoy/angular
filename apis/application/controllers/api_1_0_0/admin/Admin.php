@@ -100,7 +100,7 @@ class Admin extends REST_Controller{
     * @ Modified By              : Subhankar
     * 
     */
-    public function checkUserAuthentication_post(){
+public function checkUserAuthentication_post(){
      //echo "Here";exit();
         $error_message = $success_message = $http_response = '';
         $result_arr = array();
@@ -192,14 +192,14 @@ class Admin extends REST_Controller{
             $error_message = 'Invalid Token';
             $http_response = 'http_response_unauthorized';        
         } else {
-            //pre($this->post());
+            //pre($this->post());die();
             $req_arr = $details_arr = array();
             $flag           = true;
             if(empty($this->post('username', true))){
                 $flag           = false;
                 $error_message  = "Email id is required";
             } else {
-                $req_arr['username'] = $this->post('username', true);
+               $req_arr['username'] = $this->post('username', true);
             }
 
             if($flag && empty($this->post('password', true))){
@@ -207,7 +207,9 @@ class Admin extends REST_Controller{
                 $error_message  = "Password is required";
             } else {
                 $req_arr['password'] = $this->post('password', true);
-            }           
+            }  
+
+            //print_r($req_arr);die();     
 
             if($flag){
 
@@ -274,6 +276,7 @@ class Admin extends REST_Controller{
         json_response($result_arr, $http_response, $error_message, $success_message);
     }
 
+    
 
     /*
     * --------------------------------------------------------------------------

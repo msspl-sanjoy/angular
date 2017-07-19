@@ -3,7 +3,7 @@
  */
 //alert();
 angular
-    .module('pAngular', [
+    .module('mPokket', [
         'ui.router',
         'ui.bootstrap',
         'ajaxServices',
@@ -25,13 +25,13 @@ angular
     ])
  
     .constant('CONFIG',{
-        module_name     : 'pAngular',
+        module_name     : 'mPokket',
         DebugMode       : true,
         StepCounter     : 0,
         /*AssetsUrl     : 'https://admin.finzo.in/',
         ApiUrl          : 'https://apis.finzo.in/api_1_0_0/admin/',*/
-        AssetsUrl       : 'http://'+(location.hostname)+'/angular_bor/admin/',
-        ApiUrl          : 'http://'+(location.hostname)+'/angular_obr/apis/api_1_0_0/admin/',
+        AssetsUrl       : 'http://'+(location.hostname)+'/angular/admin/',
+        ApiUrl          : 'http://'+(location.hostname)+'/angular/apis/api_1_0_0/admin/',
         TimeOut         : '2000',
         itemsPerPage    : '5'
     })
@@ -40,5 +40,5 @@ angular
         client_id       : '9d911a9a00ef11e48aff0019d114582',
         client_secret   : '463ceaeab4db11e3aa520019d119645',
         //token_url     : 'https://apis.finzo.in/api_1_0_0/user/token',
-        token_url       : 'http://'+(location.hostname)+'/angular_obr/apis/api_1_0_0/user/token',
+        token_url       : 'http://'+(location.hostname)+'/angular/apis/api_1_0_0/user/registration/token',
     });
