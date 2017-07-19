@@ -115,6 +115,7 @@ angular
 		$scope.deleteEmployee = function(employeeeId,index)
 		{
 			
+		    alert(employeeeId);
 		    $scope.employeeIndex = index;
 			var employeeParam = {
 				'employeeID' 	: employeeeId,
@@ -128,11 +129,11 @@ angular
 		{
 			if(status == 200)
 			{
-				alert($scope.employeeIndex);
+				//alert($scope.employeeIndex);
 				$scope.successMessage = result.raws.success_message;
 				$scope.clearMessage();
 				$scope.getAllEmployee.splice($scope.employeeIndex,1);
-				//window.location.href='#/dashboard/employee/list';
+				window.location.reload();
 				
 			}
 		}

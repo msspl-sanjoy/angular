@@ -61,12 +61,9 @@ public function getAllEmployeeCount($param = array())
         if(!empty($param['searchByName']))
         {
          $this->db->like('name',$param['searchByName']);
-        $this->db->or_like('phone',$param['searchByName']);
-        $this->db->or_like('email',$param['searchByName']);
-        $this->db->or_like('designation',$param['searchByName']);
-
+       
         }
-        $result = $this->db->get($this->tables['tbl_employee'])->row_array();
+        $result = $this->db->get($this->tables['tbl_user'])->row_array();
         
         return $result;
     }
@@ -90,7 +87,7 @@ public function getAllEmployeeCount($param = array())
 
     public function add_employee($param = array()){
     //print_r($this->tables['tbl_employee']); exit();
-	$this->db->insert($this->tables['tbl_employee'],$param);
+	$this->db->insert($this->tables['tbl_user'],$param);
 	$insert_id = $this->db->insert_id(); 
     return $insert_id;
 
@@ -120,7 +117,7 @@ function updateEmployee($where=array(),$param=array()){
 
 function employeeDelete($param = array()){
     $this->db->where('id',$param['employeeID']);
-    $this->db->delete($this->tables['tbl_employee']);
+    $this->db->delete($this->tables['tbl_user']);
     return true;
 }
  

@@ -216,43 +216,20 @@ if (!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobal
         $req_arr['email'] = $this->post('email',true);
 
     }
-    if(empty($this->post('phone',true))){
+    if(empty($this->post('mobile',true))){
         $flag = false;
         $error_message = "Employee Phone is required";
    }else{
-    $req_arr['phone'] = $this->post('phone',true);
+    $req_arr['mobile'] = $this->post('mobile',true);
    }
-   if(empty($this->post('designation',true))){
-    $flag = false;
-    $error_message = "Employee designation is required";
-
-   }else{
-     $req_arr['designation']= $this->post('designation',true);
-
-   }
-
-   if(empty($this->post('company',true))){
-    $flag = false;
-    $error_message = "Employee company is required";
-
-   }else{
-     $req_arr['company']= $this->post('company',true);
-   }
-
-   if(empty($this->post('state',true))){
-    $flag = false;
-    $error_message = "Employee state is required";
-
-   }else{
-    $req_arr['state']= $this->post('state',true);
-   }
+   
+   
+  
 
       
     $req_arr['address']= $this->post('address',true);
-    $req_arr['detail']= '';
-      
-      
-      $req_arr['date_of_joing'] = date('Y-m-d');
+    
+    
      if($flag){
     $checkDuplicateEmployee = $this->employee->checkDuplicateEmployee($req_arr);
 
@@ -449,10 +426,11 @@ function deleteEmployee_post(){
 
       $empId = $this->employee->getEmployeeById($req_arr);
       if(!empty($empId)){
-          //$this->employee->employeeDelete($req_arr);
+          $this->employee->employeeDelete($req_arr);
           
            //$result_arr['dataset'] = $this->employee->getAllEmployee($req_arr);
            $count   = $this->employee->getAllEmployeeCount($req_arr);
+           //print_r($count);die();
            $result_arr['count']   = $count['count_employee'];
            $result_arr = array();
            $http_response = 'http_response_ok';
