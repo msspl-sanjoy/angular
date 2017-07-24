@@ -27,6 +27,8 @@ $config['tables']['tbl_admins'] 				= 'tbl_admins';
 $config['tables']['tbl_admin_pwd_reset_codes'] 	= 'tbl_admin_pwd_reset_codes';
 $config['tables']['tbl_admin_loginsessions'] 	= 'tbl_admin_loginsessions';
 $config['tables']['tbl_employee'] = 'tbl_employee';
+$config['tables']['tbl_products'] = 'tbl_products';
+$config['tables']['tbl_category'] = 'tbl_category';
 $config['tables']['cms_master'] = 'cms_master';
 $config['tables']['tbl_user'] = 'tbl_user_angular';
 

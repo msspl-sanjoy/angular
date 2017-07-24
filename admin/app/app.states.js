@@ -191,6 +191,56 @@ angular
   
 })
 
+  .state("products",{
+  parent:'dashboard',
+  url:'/products',
+  templateUrl:'app/components/products/views/products.index.view.html'
+
+ })
+
+
+ .state("products.list",{
+  url: '/list',
+  templateUrl:'app/components/products/views/products.list.html',
+  controller:'productsController',
+  onEnter: function($state,$rootScope){ // define value and load the default variable in our page
+              $rootScope.parentBreadcrumb = 'Dashboard';
+              $rootScope.breadcrumb       = 'Products list';
+              $rootScope.carousel         = '';
+              //$rootScope.leftMenu         = 'list'; 
+            }
+  
+
+          })
+
+
+
+
+ .state("products.add-products",{
+  url:'/add-products',
+  templateUrl:'app/components/products/views/products.add.html',
+  controller: 'productsController',
+  onEnter: function($state,$rootScope){ // define value and load the default variable in our page
+    $rootScope.parentBreadcrumb = 'Dashboard';
+    $rootScope.breadcrumb       = 'Products';
+    $rootScope.carousel         = 'Add Products';
+    //$rootScope.leftMenu         = 'add'; 
+  }
+ })
+
+.state("products.update-products",{
+  url:'/products-products/:productsID',
+  templateUrl:'app/components/products/views/update.products.html',
+  controller: 'editProductsController',
+  onEnter: function($state,$rootScope){ // define value and load the default variable in our page
+    $rootScope.parentBreadcrumb = 'Dashboard';
+    $rootScope.breadcrumb       = 'Products';
+    $rootScope.carousel         = 'Update products';
+    
+    //$rootScope.leftMenu         = 'edit'; 
+            }
+  
+})
 
 .state("profile",{
   parent:'dashboard',
