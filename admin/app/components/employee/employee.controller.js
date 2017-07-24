@@ -161,8 +161,6 @@ angular
             }, CONFIG.TimeOut);
 		}
 
-
-
 	}])
 
 .controller('editEmployeeController',["$scope", 'ajaxService', 'CONFIG', '$location', '$timeout', '$cookies', '$state', "helper", "$rootScope",'$stateParams','$window',function($scope,ajaxService,CONFIG,$location,$timeout,$cookies, $state, helper, $rootScope, $stateParams,$window){
