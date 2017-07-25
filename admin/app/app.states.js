@@ -229,7 +229,7 @@ angular
  })
 
 .state("products.update-products",{
-  url:'/products-products/:productsID',
+  url:'/update-products/:productsID',
   templateUrl:'app/components/products/views/update.products.html',
   controller: 'editProductsController',
   onEnter: function($state,$rootScope){ // define value and load the default variable in our page
