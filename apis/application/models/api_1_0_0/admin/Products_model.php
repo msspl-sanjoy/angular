@@ -59,7 +59,8 @@ function getAllProducts($param = array()){
     return $insert_id;
 
     }
-public function getAllProductsCount($param = array())
+
+    public function getAllProductsCount($param = array())
     {
         $this->db->select('count(*) as count_products');
         if(!empty($param['order_by']) && !empty($param['order'])){
@@ -78,58 +79,33 @@ public function getAllProductsCount($param = array())
     }
 
 
- public function checkDuplicateEmployee($param = array())
-    {
-        $this->db->select("*");
-        if($param['name'])
-        {
-            $this->db->where('name', $param['name']);
-        }
-        if(isset($param['employee_id']))
-        {
-            $this->db->where('id != ', $param['employee_id']);
-        }
-        $qry = $this->db->get($this->tables['tbl_employee']);
-        return $qry->result_array();
-    }
+ 
+     function getProductsById($param = array()){
+      $this->db->select('pro.*,cat.category_name');
+      if($param['productsID']){
+      $this->db->where('pro.id',$param['productsID']);
+      }
+      $this->db->join($this->table_category." as cat",'cat.id=pro.fk_category_id');
+      $products_dtail = $this->db->get($this->tables['tbl_products']." as pro")->row_array();
+      return $products_dtail;
+
+     }
 
 
-    public function add_employee($param = array()){
-    //print_r($this->tables['tbl_employee']); exit();
-	$this->db->insert($this->tables['tbl_user'],$param);
-	$insert_id = $this->db->insert_id(); 
-    return $insert_id;
+    function updateEmployee($where=array(),$param=array()){
+     
+     $this->db->where('id',$where['id']);
+     $this->db->update($this->tables['tbl_user'],$param);
 
     }
 
 
-
- function getEmployeeById($param = array()){
-  $this->db->select('*');
-  if($param['employeeID']){
-  $this->db->where('id',$param['employeeID']);
-  }
-
-  $emp_dtail = $this->db->get($this->tables['tbl_user'])->row_array();
-  return $emp_dtail;
-
- }
-
-
-function updateEmployee($where=array(),$param=array()){
- 
- $this->db->where('id',$where['id']);
- $this->db->update($this->tables['tbl_user'],$param);
-
-}
-
-
-function employeeDelete($param = array()){
-    $this->db->where('id',$param['employeeID']);
-    $this->db->delete($this->tables['tbl_user']);
-    return true;
-}
- 
+    function employeeDelete($param = array()){
+        $this->db->where('id',$param['employeeID']);
+        $this->db->delete($this->tables['tbl_user']);
+        return true;
+    }
+     
 
 
 

@@ -175,20 +175,30 @@ angular
 		$scope.getProductsDetail = function()
 		{ 
 			var productsParam = {'productsID' : $scope.productsID};
-			ajaxService.ApiCall(productsParam, CONFIG.ApiUrl+'products/getProductsDetail', $scope.getDegreeDetailSuccess, $scope.getDegreeDetailError, 'post');
+			ajaxService.ApiCall(productsParam, CONFIG.ApiUrl+'products/getProductsDetail', $scope.getProductsDetailSuccess, $scope.getProductsDetailError, 'post');
 		}
 
  //getDegreeDetail success function
-		$scope.getDegreeDetailSuccess = function(result,status) 
+		$scope.getProductsDetailSuccess = function(result,status) 
 		{
+		    
+			//console.log(result.raws.data.dataset);
+			//alert("1"+result.raws.data.dataset.product_name);
 		    if(status == 200) 
 		    {
-                $scope.employeeDetail = result.raws.data.dataset;
+		    	//alert("1"+result.raws.data.dataset.product_name);
+                //$scope.productsDetail = result.raws.data.dataset;
+                $scope.productsDetail.product_name = result.raws.data.dataset.product_name;
+                $scope.productsDetail.product_code = result.raws.data.dataset.product_code;
+                $scope.productsDetail.product_price = result.raws.data.dataset.product_price;
+                $scope.productsDetail.fk_category_id = result.raws.data.dataset.fk_category_id;
+                $scope.productsDetail.category_name = result.raws.data.dataset.fk_category_id.toString();
+                //alert($scope.productsDetail.product_name);
 		    }
 		}
 
 		//getDegreeDetail error function
-		$scope.getDegreeDetailError = function(result) 
+		$scope.getProductsDetailError = function(result) 
 		{
             $scope.errorMessage = result.raws.error_message;
             $scope.clearMessage();
@@ -196,10 +206,11 @@ angular
 
 		if($state.$current.name == 'products.update-products')
 		{
-			$scope.getEmployeeDetail();
+			$scope.getProductsDetail();
 		}
 
         $scope.updateProductsDetail= function(employeeDetail){
+
  ajaxService.ApiCall(employeeDetail, CONFIG.ApiUrl+'products/updateEmployeeDetail',
  $scope.updateProductsDetailSuccess,$scope.updateProductsDetailError, 'post');
 }
@@ -235,7 +246,7 @@ angular
             }, CONFIG.TimeOut);
 		}
 
-		$scope.myVar='PR'+rand(000,999)+time();
+		//$scope.myVar='PR'+rand(000,999)+time();
 
 }])
 

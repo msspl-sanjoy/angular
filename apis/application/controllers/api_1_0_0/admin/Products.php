@@ -257,7 +257,7 @@ json_response($result_arr, $http_response, $error_message, $success_message);
 }
 
 
-function getEmployeeDetail_post(){
+function getProductsDetail_post(){
 $error_message = $success_message = $http_response = '';
 $result_arr = array();
 if (!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobals())) 
@@ -270,17 +270,18 @@ else{
       $req_arr = $details_arr = array();
       $flag = true;
 
-      if(empty($this->post('employeeID')))
+      if(empty($this->post('productsID')))
             {
                 $flag = false;
-                $error_message = "Employee Id is required";
+                $error_message = "Products Id is required";
             }else{
-              $req_arr['employeeID'] = $this->post('employeeID');
+              $req_arr['productsID'] = $this->post('productsID');
             }
 
            if($flag){
-            $employee_detail = $this->employee->getEmployeeById($req_arr);
-            $req_arr['dataset']= $employee_detail;
+            $products_detail = $this->products->getProductsById($req_arr);
+            $req_arr['dataset']= $products_detail;
+            //print_r($req_arr);die();
             $http_response    = 'http_response_ok';
 
            }else{
