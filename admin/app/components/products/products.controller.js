@@ -41,7 +41,10 @@ angular
 		    if(status == 200) 
 		    {
                 $scope.allProducts	= result.raws.data.dataset;
-                $scope.total_count 	= result.raws.data.count;	        
+                //alert("1"+$scope.allProducts.id);
+                //alert($scope.allProducts.products_name);
+                $scope.total_count 	= result.raws.data.count;
+               // $scope.imgsrc='/var/www/html/angular/assets/resources/product/thumb/'+$scope.allProducts[0].id+'.'+$scope.allProducts[0].product_image_extension;      
 		    }		       
 		}
 

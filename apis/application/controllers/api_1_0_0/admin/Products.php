@@ -153,14 +153,28 @@ if($flag){
    $checkloginstatus = $this->products->checkSessionExist($check_user);
    if(!empty($checkloginstatus) && count($checkloginstatus) > 0)
      {
-       $details_arr['dataset']     = $this->products->getAllProducts($req_arr);
+       
+
+       
+       $details_arr     = $this->products->getAllProducts($req_arr);
+
+       //pre($details_arr,1);
+
+
+       foreach ($details_arr as $key => $value) {
+           
+           $details_arr[$key]['product_img_url'] = $this->config->item('upload_file_url') . 'product/thumb/'.$value['id'].'.'.$value['product_image_extension'];
+       }
+
+
         $count   = $this->products->getAllProductsCount($req_arr);
                     $details_arr['count']       = $count['count_products'];
                     //pre($details_arr,1);
 
                     if(!empty($details_arr) && count($details_arr) > 0)
                     {
-                        $result_arr         = $details_arr;
+                        $result_arr['dataset']        = $details_arr;
+                        //print_r($result_arr);die();
                         $http_response      = 'http_response_ok';
                         $success_message    = 'All Products';  
                     } 
@@ -239,6 +253,7 @@ if (!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobal
      if (isset($_FILES['file']['name']) && $_FILES['file']['size'] > 0) {
                  $array1     = explode('.', $_FILES['file']['name']);
                     $extension1 = end($array1);
+                    //echo $extension1;die();
                     $file_ex    = array(
                         "png",
                         "jpg",
@@ -249,7 +264,8 @@ if (!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobal
                                 'fk_category_id' => $req_arr['fk_category_id'],
                                 'product_name' => $req_arr['product_name'],
                                 'product_code' => $req_arr['product_code'],
-                                'product_price' => $req_arr['product_price']
+                                'product_price' => $req_arr['product_price'],
+                                'product_image_extension'=> $extension1
                                 
                             );
                             
