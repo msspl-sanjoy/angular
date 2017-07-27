@@ -87,10 +87,25 @@ angular
 		/**************** Search END ******************/
 		
 		// Perform the addEmployee action
+
+	      $scope.uploadImg = function (element) {
+			$scope.product_img = element.files[0];
+		}
+
 		$scope.doaddproducts = function(productsData) 
 		{ 
-		 //alert("hii");
-		 ajaxService.ApiCall(productsData, CONFIG.ApiUrl+'products/addProducts', $scope.addProductsSuccess, $scope.addProductsError, 'post');
+			var formdata = new FormData();
+			formdata.append('file',$scope.product_img);
+			formdata.append('user_pass_key',$cookies.get('user_pass_key'));
+			//formddata.append('user_id',$cookies.get('user_id'));
+		    
+		    angular.forEach(productsData, function(value, key) {
+			formdata.append(key, value);
+			});
+
+			
+
+	ajaxService.ApiCallImagePost(formdata, CONFIG.ApiUrl+'products/addProducts', $scope.addProductsSuccess, $scope.addProductsError, 'post');
 		}
 
 		//addDegree success function

@@ -140,9 +140,9 @@ if (!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobal
         }
 
 
-$req_arr['order']           = $this->input->post('order', true);
-$req_arr['order_by']        = $this->input->post('order_by', true);
-$req_arr['searchByName']    = $this->input->post('searchByName', true);
+        $req_arr['order']           = $this->input->post('order', true);
+        $req_arr['order_by']        = $this->input->post('order_by', true);
+        $req_arr['searchByName']    = $this->input->post('searchByName', true);
 
 if($flag){
 
@@ -196,6 +196,7 @@ if (!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobal
         }
     else{
 
+
     $req_arr = $details_arr = array();
     //pre($this->input->post(),1);
     $flag = true;
@@ -224,34 +225,139 @@ if (!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobal
    }
    
    $req_arr['product_code']='PR'.rand(000,999);
-  
 
-      
-    //$req_arr['address']= $this->post('address',true);
+   $result_arr['id'] = '1';
+  
+    //pre($req_arr,1);
+
+       //print_r($_FILES['file']); exit();
+            //print_r($_FILES['profile_image']['name']);
     
     
      if($flag){
     //$checkDuplicateEmployee = $this->employee->checkDuplicateEmployee($req_arr);
+     if (isset($_FILES['file']['name']) && $_FILES['file']['size'] > 0) {
+                 $array1     = explode('.', $_FILES['file']['name']);
+                    $extension1 = end($array1);
+                    $file_ex    = array(
+                        "png",
+                        "jpg",
+                        "jpeg"
+                    );
+            
+                    $in_array = array(
+                                'fk_category_id' => $req_arr['fk_category_id'],
+                                'product_name' => $req_arr['product_name'],
+                                'product_code' => $req_arr['product_code'],
+                                'product_price' => $req_arr['product_price']
+                                
+                            );
+                            
+                         $last_id = $this->products->add_products($in_array);
+
+                        $this->load->library('upload');
+                        
+                        $image_info              = getimagesize($_FILES['file']['tmp_name']);
+                        $image_width             = $image_info[0];
+                        $image_height            = $image_info[1];
+                        $original_width          = $image_width;
+                        $original_height         = $image_height;
+                        $new_width               = 300;
+                        $new_height              = 100;
+                        $thumb_width             = $new_width;
+                        $thumb_height            = $new_height;
+                        $array                   = explode('.', $_FILES['file']['name']);
+                        $extension               = end($array);
+                        $file_name               = $last_id . "." . $extension;
+                        $config['upload_path']   = $this->config->item('upload_file_url') . 'product/';
+                        $config['allowed_types'] = 'png|jpg|jpeg';
+                        $config['overwrite']     = true;
+                        $config['file_name']     = $file_name;
+                        
+                        $this->upload->initialize($config);
+
+
+                        
+                        
+                        if($this->upload->do_upload('file')) {
+                          //pre($config,1);
+                            $img_thumb = $this->config->item('upload_file_url') . 'product/thumb/' . $file_name;
+                            $img       = $this->config->item('upload_file_url') . 'product/' . $file_name;
+                            
+                            $upload_data_details = $this->upload->data();
+                            $image               = $file_name;
+                            $this->load->library('image_lib');
+                            $config['source_image']   = $img;
+                            $config['new_image']      = $img;
+                            $config['height']         = 400;
+                            $config['width']          = 620;
+                            $config['maintain_ratio'] = false;
+                            $this->image_lib->initialize($config);
+                            if ($this->image_lib->resize()) {
+                                /**  Resize thumb **/
+                                $config['image_library']  = 'gd2';
+                                $config['source_image']   = $img;
+                                $config['new_image']      = $img_thumb;
+                                $config['create_thumb']   = true;
+                                $config['maintain_ratio'] = true;
+                                $config['width']          = $thumb_width;
+                                $config['height']         = $thumb_height;
+                                $this->image_lib->initialize($config);
+                                $this->image_lib->resize();
+                            }
+
+
+                            
+                            
+
+                         if(!empty($last_id)){
+
+                         $http_response = 'http_response_ok';
+                         $success_message = 'Add Products successfully';
+
+                         }else{
+                         $http_response  = 'http_response_bad_request';
+                         $error_message  = 'There is some problem, please try again';
+                         }
+
+                            
+                            
+                        }else{
+
+                          $http_response  = 'http_response_bad_request';
+                         $error_message  = 'Image not upload, please try again';
+
+
+                        }
+
 
     
-         $emp_id = $this->products->add_products($req_arr);
+         
 
-         if(!empty($emp_id)){
 
-         $http_response = 'http_response_ok';
-         $success_message = 'Add Products successfully';
+      /* }else{
 
-         }else{
-         $http_response  = 'http_response_bad_request';
-         $error_message  = 'There is some problem, please try again';
-         }
+        $http_response = 'http_response_bad_request';
+        $error_message = 'File Type is not supported! Only GIF,JPG,PNG file can upoload';
+
+
+       }*/
+
+       }else{
+
+        $http_response = 'http_response_bad_request';
+        $error_message = 'Product Image required';
+
+
+       }
 
    
-}else{
-    $http_response = 'http_response_bad_request';
-}
+    }else{
+        $http_response = 'http_response_bad_request';
+    }
 
-}
+    }
+ //pre($result_arr,1);
 
 json_response($result_arr, $http_response, $error_message, $success_message);
 }

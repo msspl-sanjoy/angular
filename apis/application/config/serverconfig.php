@@ -25,8 +25,8 @@ $config['oauth_db_password']='Mass4Pass';
 $config['site_mode']='staging';
 
 
-$config['temp_upload_file_path']='/var/www/html/angular_obr/apis/assets/uploads/';
-$config['upload_file_url'] = '/var/www/html/angular_obr/assets/resources/';
+$config['temp_upload_file_path']='/var/www/html/angular/apis/assets/uploads/';
+$config['upload_file_url'] = '/var/www/html/angular/assets/resources/';
 
 
 //$config['temp_upload_file_path']='/var/www/html/apis/assets/tmp_uploads/';
