@@ -163,7 +163,7 @@ if($flag){
 
        foreach ($details_arr as $key => $value) {
            
-           $details_arr[$key]['product_img_url'] = $this->config->item('upload_file_url') . 'product/thumb/'.$value['id'].'.'.$value['product_image_extension'];
+           $details_arr[$key]['product_img_url'] = 'http://localhost/angular/assets/resources/' . 'product/thumb/'.$value['id'].'.'.$value['product_image_extension'];
        }
 
 
