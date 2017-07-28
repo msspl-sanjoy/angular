@@ -127,7 +127,7 @@ function getAllProducts($param = array()){
     function productsDelete($param = array()){
         $this->db->where('id',$param['productsID']);
         $this->db->delete($this->tables['tbl_products']);
-        //echo $this->db->last_query();die();
+        //  echo $this->db->last_query();die();
         return true;
     }
      
