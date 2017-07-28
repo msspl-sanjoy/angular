@@ -316,7 +316,7 @@ if(!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobals
     }else{
         $req_arr['employee_id'] = $this->post('id');
     }
-
+    //pre($req_arr['employee_id']);die();
     if(empty($this->post('name',true))){
       $flag = false;
       $error_message = "Employee Name is required";

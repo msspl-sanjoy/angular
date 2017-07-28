@@ -402,6 +402,9 @@ else{
 
            if($flag){
             $products_detail = $this->products->getProductsById($req_arr);
+            //pre($products_detail);
+            $products_detail['product_img_url'] = 'http://localhost/angular/assets/resources/' . 'product/thumb/'.$products_detail['id'].'.'.$products_detail['product_image_extension'];
+    
             $req_arr['dataset']= $products_detail;
             //print_r($req_arr);die();
             $http_response    = 'http_response_ok';
@@ -415,7 +418,7 @@ else{
       json_response($req_arr,$http_response,$error_message,$success_message);
 }
 
-public function updateEmployeeDetail_post(){
+public function updateProductsDetail_post(){
 
  $error_message = $success_message = $http_response ='';
  $result_arr = array();
@@ -432,59 +435,59 @@ if(!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobals
     if(empty($this->post('id',true))){
 
         $flag = false;
-        $error_message = 'Employee Id is required';
+        $error_message = 'Product Id is required';
     }else{
-        $req_arr['employee_id'] = $this->post('id');
+        $req_arr['id'] = $this->post('id');
     }
-
-    if(empty($this->post('name',true))){
+    //pre($req_arr['id']);die();
+    if(empty($this->post('product_name',true))){
       $flag = false;
-      $error_message = "Employee Name is required";
+      $error_message = "Product Name is required";
 
     }else{
-        $req_arr['name'] = $this->post('name',true);
+        $req_arr['product_name'] = $this->post('product_name',true);
     }
-    if(empty($this->post('email',true))){
+    if(empty($this->post('category_name',true))){
 
         $flag = false;
         $error_message = "Employee Email is required";
 
     }else{
-        $req_arr['email'] = $this->post('email',true);
+        $req_arr['category_id'] = $this->post('category_name',true);
 
     }
-    if(empty($this->post('mobile',true))){
+    if(empty($this->post('product_price',true))){
         $flag = false;
-        $error_message = "Employee Phone is required";
+        $error_message = "Product Price is required";
    }else{
-    $req_arr['phone'] = $this->post('mobile',true);
+    $req_arr['product_price'] = $this->post('product_price',true);
    }
    
 
       
-    $req_arr['address']= $this->post('address',true);
+    //$req_arr['address']= $this->post('address',true);
     $req_arr['detail']= '';
 
   
   
   if($flag){
-    $checkEmployee = $this->employee->checkDuplicateEmployee($req_arr);
+    $checkProducts = $this->products->checkDuplicateProducts($req_arr);
+    //pre($checkProducts);die();
     if(empty($checkEmployee)){
-        $degreeId = $this->employee->updateEmployee(array('id' => $req_arr['employee_id']), 
+        $degreeId = $this->products->updateProducts(array('id' => $req_arr['id']), 
             array(
-            'name' => $req_arr['name'],
-            'email'=> $req_arr['email'],
-            'mobile'=> $req_arr['phone'],
-            'address'=> $req_arr['address'] ,
+            'product_name' => $req_arr['product_name'],
+            'fk_category_id'=> $req_arr['category_id'],
+            'product_price'=> $req_arr['product_price'],
             ));
 
            $http_response      = 'http_response_ok';
-           $success_message    = 'Updated user successfully';
+           $success_message    = 'Updated Product successfully';
    
 
     }else{
         $http_response = 'http_response_bad_request';
-        $error_message = 'Employee Name already exists, please try another name';
+        $error_message = 'Product Name already exists, please try another name';
     }
 
 
@@ -500,7 +503,7 @@ if(!$this->oauth_server->verifyResourceRequest(OAuth2\Request::createFromGlobals
 }
 
 
-function deleteEmployee_post(){
+function deleteProducts_post(){
 
    $error_message = $success_message = $http_response = "";
    $req_arr = array();
@@ -513,11 +516,11 @@ function deleteEmployee_post(){
     $req_arr = $details_arr = array();
     $flag = true;
 
-    if(empty($this->post('employeeID',true))){
+    if(empty($this->post('productsID',true))){
         $flag = false;
-        $error_message = 'employee id is required';
+        $error_message = 'product id is required';
     }else{
-       $req_arr['employeeID'] =  $this->post('employeeID'); 
+       $req_arr['productsID'] =  $this->post('productsID'); 
     }
     if(empty($this->post('pass_key',true))){
     $flag = false;
@@ -540,21 +543,21 @@ function deleteEmployee_post(){
     'admin_user_id' => $this->encrypt->decode($req_arr['admin_user_id']),
       );
 
-  $checkloginstatus = $this->employee->checkSessionExist($check_user);
+  $checkloginstatus = $this->products->checkSessionExist($check_user);
    if(!empty($checkloginstatus) && count($checkloginstatus) > 0)
      {
 
-      $empId = $this->employee->getEmployeeById($req_arr);
-      if(!empty($empId)){
-          $this->employee->employeeDelete($req_arr);
+      $proId = $this->products->getProductsById($req_arr);
+      if(!empty($proId)){
+          $this->products->productsDelete($req_arr);
           
            //$result_arr['dataset'] = $this->employee->getAllEmployee($req_arr);
-           $count   = $this->employee->getAllEmployeeCount($req_arr);
+           $count   = $this->products->getAllProductsCount($req_arr);
            //print_r($count);die();
-           $result_arr['count']   = $count['count_employee'];
+           $result_arr['count']   = $count['count_products'];
            $result_arr = array();
            $http_response = 'http_response_ok';
-           $success_message = 'User delete successfully';
+           $success_message = 'Product delete successfully';
            
       }else{
         $http_response = 'http_response_bad_request';

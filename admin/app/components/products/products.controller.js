@@ -137,25 +137,26 @@ angular
 		$scope.deleteProducts = function(productsId,index)
 		{
 			
-		    //alert(employeeeId);
+		    //alert(productsId);
 		    $scope.productsIndex = index;
 			var productsParam = {
 				'productsID' 	: productsId,
 			    'pass_key'		: $cookies.get('pass_key'),
 	        	'admin_user_id' : $cookies.get('admin_user_id')
 			};
-			ajaxService.ApiCall(employeeParam, CONFIG.ApiUrl+'products/deleteProducts', $scope.deleteProductsSuccess, $scope.deleteProductsError, 'post');
+			ajaxService.ApiCall(productsParam, CONFIG.ApiUrl+'products/deleteProducts', $scope.deleteProductsSuccess, $scope.deleteProductsError, 'post');
 		}
 
-		$scope.deleteEmployeeSuccess = function(result, status)
+		$scope.deleteProductsSuccess = function(result, status)
 		{
 			if(status == 200)
 			{   
 				$scope.getAllProducts($scope.pageno, $scope.order_by, $scope.order, $scope.searchByName);
 				//alert($scope.employeeIndex);
 				$scope.successMessage = result.raws.success_message;
+				//alert($scope.successMessage);
 				$scope.clearMessage();
-				$scope.getAllEmployee.splice($scope.productsIndex,1);
+				$scope.getAllProducts.splice($scope.productsIndex,1);
 				//window.location.reload();
 				
 			}
@@ -206,10 +207,13 @@ angular
 		    {
 		    	//alert("1"+result.raws.data.dataset.product_name);
                 //$scope.productsDetail = result.raws.data.dataset;
+                $scope.productsDetail.id=result.raws.data.dataset.id;
+                //alert("1"+$scope.productsDetail.id);
                 $scope.productsDetail.product_name = result.raws.data.dataset.product_name;
                 $scope.productsDetail.product_code = result.raws.data.dataset.product_code;
                 $scope.productsDetail.product_price = result.raws.data.dataset.product_price;
                 $scope.productsDetail.fk_category_id = result.raws.data.dataset.fk_category_id;
+                $scope.productsDetail.product_img_url = result.raws.data.dataset.product_img_url;
                 $scope.productsDetail.category_name = result.raws.data.dataset.fk_category_id.toString();
                 //alert($scope.productsDetail.product_name);
 		    }
@@ -227,9 +231,10 @@ angular
 			$scope.getProductsDetail();
 		}
 
-        $scope.updateProductsDetail= function(employeeDetail){
+        $scope.updateProductsDetail= function(productsDetail){
+        	//alert(productsDetail.id);
 
- ajaxService.ApiCall(employeeDetail, CONFIG.ApiUrl+'products/updateEmployeeDetail',
+ ajaxService.ApiCall(productsDetail, CONFIG.ApiUrl+'products/updateProductsDetail',
  $scope.updateProductsDetailSuccess,$scope.updateProductsDetailError, 'post');
 }
 

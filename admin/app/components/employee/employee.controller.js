@@ -197,6 +197,7 @@ angular
 		}
 
         $scope.updateEmployeeDetail= function(employeeDetail){
+        	
  ajaxService.ApiCall(employeeDetail, CONFIG.ApiUrl+'employee/updateEmployeeDetail',
  $scope.updateEmployeeDetailSuccess,$scope.updateEmployeeDetailError, 'post');
 }

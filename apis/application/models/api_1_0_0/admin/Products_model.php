@@ -92,17 +92,42 @@ function getAllProducts($param = array()){
      }
 
 
-    function updateEmployee($where=array(),$param=array()){
+    function updateProducts($where=array(),$param=array()){
      
      $this->db->where('id',$where['id']);
-     $this->db->update($this->tables['tbl_user'],$param);
+     $this->db->update($this->tables['tbl_products'],$param);
 
     }
+    public function checkDuplicateProducts($param = array())
+    {
+        $this->db->select("*");
+        if($param['product_name'])
+        {
+            $this->db->where('product_name', $param['product_name']);
+        }
+        if(isset($param['id']))
+        {
+            $this->db->where('id != ', $param['id']);
+        }
+        $qry = $this->db->get($this->tables['tbl_products']);
+        return $qry->result_array();
+    }
 
+    /*function getProductsById($param = array())
+    {
+      $this->db->select('*');
+      if($param['productsID']){
+      $this->db->where('id',$param['productsID']);
+      }
 
-    function employeeDelete($param = array()){
-        $this->db->where('id',$param['employeeID']);
-        $this->db->delete($this->tables['tbl_user']);
+      $emp_dtail = $this->db->get($this->tables['tbl_products'])->row_array();
+      return $pro_dtail; 
+    }*/
+
+    function productsDelete($param = array()){
+        $this->db->where('id',$param['productsID']);
+        $this->db->delete($this->tables['tbl_products']);
+        //echo $this->db->last_query();die();
         return true;
     }
      
