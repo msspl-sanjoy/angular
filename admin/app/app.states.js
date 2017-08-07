@@ -145,7 +145,7 @@ angular
   url:'/employee',
   templateUrl:'app/components/employee/views/employee.index.view.html'
 
- })
+ })   
 
 
  .state("employee.list",{
@@ -200,6 +200,7 @@ angular
 
 
  .state("products.list",{
+  
   url: '/list',
   templateUrl:'app/components/products/views/products.list.html',
   controller:'productsController',

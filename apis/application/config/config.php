@@ -21,7 +21,7 @@ ini_set('upload_max_filesize', '35M');
 |
 */
 
-$config['base_url'] = 'http://localhost/angular_obr/';
+$config['base_url'] = 'http://localhost/angular_module/';
 
 /*
 |--------------------------------------------------------------------------

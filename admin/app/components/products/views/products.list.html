@@ -40,7 +40,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr dir-paginate="lists in allProducts|itemsPerPage:itemsPerPage" current-page="pageno" total-items="total_count" id="{{lists.id}}" class="ng-scope" >
+                  <tr  dir-paginate="lists in allProducts|itemsPerPage:itemsPerPage" current-page="pageno" total-items="total_count" id="{{lists.id}}" class="ng-scope" >
                       
                     <td><a href="" class="event_name_class">{{lists.product_name}}</a></td>
                     <td>{{lists.c_name}}</td>
@@ -51,15 +51,14 @@
                     <a href="#/dashboard/products/update-products/{{lists.id}}" class="eye_img_tbl"><img src="assets/img/edit_pencil.png" alt="Update" title="Update"></a>
                     </td>
                   </tr>
-                  <tr ng-if="allEmployee.length==0">
+                  <tr ng-if="allProducts.count==0">
                             <td align="center" colspan="7" style ="color:red"><b>No record found.</b></td>
                   </tr>                  
-
                 </tbody>
               </table>
 
               <div class="row pagination-footer text-center">
-            <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="getAllEmployee(newPageNumber, order_by, order=='asc' ? 'asc' : 'desc')" >
+            <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="getAllProducts(newPageNumber, order_by, order=='asc' ? 'asc' : 'desc')" >
             </dir-pagination-controls>
         </div>
     </div>

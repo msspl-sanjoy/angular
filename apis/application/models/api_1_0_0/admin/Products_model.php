@@ -33,7 +33,7 @@ function getAllProducts($param = array()){
 
         if(!empty($param['searchByName']))
         {
-        $this->db->like('name',$param['searchByName']);
+        $this->db->like('product_name',$param['searchByName']);
         
         }
 
@@ -69,7 +69,7 @@ function getAllProducts($param = array()){
 
         if(!empty($param['searchByName']))
         {
-         $this->db->like('name',$param['searchByName']);
+         $this->db->like('product_name',$param['searchByName']);
        
         }
 
